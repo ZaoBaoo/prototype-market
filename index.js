@@ -58,6 +58,11 @@ window.addEventListener('DOMContentLoaded', function() {
             if (e.target.value > 99) { e.target.value = 99 }
         }
     });
+
+
+    console.log('1');
+    console.log('2');
+    console.log('3');
 });
 
 
