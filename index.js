@@ -58,7 +58,6 @@ window.addEventListener('DOMContentLoaded', function() {
             if (e.target.value > 99) { e.target.value = 99 }
         }
     });
-
 });
 
 
