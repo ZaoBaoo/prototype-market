@@ -1,28 +1,29 @@
 import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
 
-const promise = getDB();
-renderPage(promise);
 
+window.addEventListener('DOMContentLoaded', async function() {
+    await getDB();
+    renderPage();
 
-window.addEventListener('DOMContentLoaded', function() {
     const blockCard = document.querySelector('.main__cards');
 
     // Слушаем кнопку добавить
     blockCard.addEventListener('click', (e) => {
         if (e.target.classList.contains('card__btn-add')) {
-            const input = e.target.parentNode.previousElementSibling.lastElementChild.lastElementChild.previousElementSibling.value,
-                  index = e.target.parentNode.parentNode.getAttribute('data-index'),
-                  price = e.target.parentNode.parentNode.getAttribute('data-price'),
-                  storage = window.localStorage;
-
-            // switchCounter();
-    
+            const mainLink = e.target.parentNode.parentNode,
+                  input = mainLink.querySelector('.input-counter').value,
+                  index = mainLink.getAttribute('data-index'),
+                  price =  mainLink.getAttribute('data-price');
+                       
+            window.localStorage.setItem(index, [input, price]);
+            const switchCounter = () => {
+                mainLink.querySelector('.card__price-counter').style.display = 'none'
+                mainLink.querySelector('.card__notification').style.display = 'block'
+            }
+            switchCounter();
+            updateCart();
         }
-
-        // function switchCounter() {
-            
-        // }
     });
 
     // + Слушаем счётчик плюс
@@ -59,10 +60,10 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-
-    console.log('1');
-    console.log('2');
-    console.log('3');
+    function updateCart() {
+        if (localStorage.length > 1) { console.log('В корзине что-то есть!') }
+    }
+    updateCart()
 });
 
 

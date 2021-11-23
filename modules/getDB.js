@@ -12,29 +12,20 @@ const firebaseApp = initializeApp({
 });
 const db = getFirestore(firebaseApp);
 
-function getDB() {
-    // Promise. Посылаем запрос на сервер в базу данных
-    let getObjData = new Promise((resolve, reject) => {
-        // Обращаемся к базе данных и получаем все из раздела 'catalog'
-        try {
-            const querySnapshot = getDocs(collection(db, "catalog"));
-            resolve(querySnapshot);
-        }
-        catch(err) {
-            console.log("No such document!");
-        }
-    });
-
-    return new Promise((resolve, reject) => {
-        getObjData
-        .then(dataRaw => dataRaw.docs)
-        .then(dataRawArr => dataRawArr.map(item => {
-        const obj = item.data();
-        obj.id = item.id;
-        return obj;
-        }))
-        .then(data => resolve(data));
-    });
+async function getDB() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "catalog"));
+        const dataArr = querySnapshot.docs.map(item => {
+            const obj = item.data();
+            obj.id = item.id;
+            return obj;
+        });
+        const str = JSON.stringify(dataArr)
+        localStorage.setItem("items", str);
+    }
+    catch(err) {
+        console.log("No such document!");
+    }
 }
 
 export default getDB;
