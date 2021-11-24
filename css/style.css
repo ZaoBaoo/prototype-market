@@ -137,7 +137,7 @@ body {
 }
 
 .card__price-counter span {
-  font-size: 1.15rem;
+  font-size: 1.21rem;
 }
 
 .input-counter {
@@ -164,13 +164,44 @@ body {
   height: 3.5rem;
   width: 100%;
   text-align: center;
+  cursor: pointer;
 }
 
-.card__btn div {
+.card__btn:hover {
+  background-color: #8ec97f;
+}
+
+.card__btn-add {
   padding: 1.1rem 0;
 }
 
+.plus,
+.minus {
+  cursor: pointer;
+  /* запрет выделение текста */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.plus:hover {
+  color: #2b8600;
+}
+
+.minus:hover {
+  color: #e90808;
+}
+
+
+
+
 /* basket */
+
+
+
+
 
 .basket {
   position: relative;
