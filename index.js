@@ -61,7 +61,15 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
 
     function updateCart() {
-        if (localStorage.length > 1) { console.log('В корзине что-то есть!') }
+        const basket = document.querySelector('.basket');
+        if (localStorage.length > 1) { 
+            basket.firstElementChild.classList.remove('cart');
+            basket.firstElementChild.classList.add('cart__filled');
+            basket.lastElementChild.textContent = localStorage.length - 1;
+        } else {
+            basket.firstElementChild.classList.remove('cart__filled');
+            basket.firstElementChild.classList.add('cart');
+        }
     }
     updateCart()
 });

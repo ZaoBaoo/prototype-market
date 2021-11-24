@@ -60,12 +60,6 @@ body {
   background-color: #dbffd6;
 }
 
-.cart {
-  height: 48px;
-  width: 48px;
-  color: #3c3c3c;
-}
-
 .nav {
   display: flex;
   justify-content: flex-end;
@@ -125,13 +119,13 @@ body {
 
 .card__price-text {
   font-size: 1rem;
-  padding: 0.2rem 1rem;
+  padding: 0.19rem 1rem;
   color: #3c3c3c;
   line-height: 2;
 }
 
 .card__price-counter {
-  border: 0.5px solid #d9d9d9;
+  border: 0.5px dotted #d9d9d9;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -151,7 +145,7 @@ body {
   border: none;
   text-align: center;
   width: 30px;
-  height: 30px;
+  height: 25px;
 }
 
 .input-counter:focus {
@@ -159,10 +153,10 @@ body {
 }
 
 .card__notification {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: #606060;
   font-weight: 600;
-  padding: 0.5rem 0.5rem;
+  padding: 0.6rem 0.5rem;
 }
 
 .card__btn {
@@ -176,7 +170,40 @@ body {
   padding: 1.1rem 0;
 }
 
-/* test */
+/* basket */
+
+.basket {
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 13px;
+}
+
+.cart {
+  color: #3c3c3c;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cart__filled {
+  color: #3c3c3c;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 0 5px rgb(66, 63, 231));
+}
+
+.basket__counter {
+  /* position: absolute;
+  top: 18px;
+  left: 18px; */
+  filter: drop-shadow(0 0 5px rgb(66, 63, 231));
+}
+
 
 
 
