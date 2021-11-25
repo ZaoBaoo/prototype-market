@@ -60,6 +60,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         }
     });
 
+    // basket. Обновляем кол-во товаров на иконки корзины
     function updateCart() {
         const basket = document.querySelector('.basket');
         if (localStorage.length > 1) { 
