@@ -42,7 +42,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
 
     // + Слушаем счётчик плюс
-    blockCard.addEventListener('click', (e) => {
+    window.addEventListener('click', (e) => {
         if (e.target.classList.contains('plus')) {
             movePlus();
         }
@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
 
     // - Слушаем счётчик минус
-    blockCard.addEventListener('click', (e) => {
+    window.addEventListener('click', (e) => {
         if (e.target.classList.contains('minus')) {
             moveMinus();
         }
@@ -68,7 +68,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     });
 
     // input. Слушаем инпут количества
-    blockCard.addEventListener('input', (e) => {
+    window.addEventListener('input', (e) => {
         if (e.target.classList.contains('input-counter')) {
             if (e.target.value < 1) { e.target.value = 1 }
             if (e.target.value > 99) { e.target.value = 99 }

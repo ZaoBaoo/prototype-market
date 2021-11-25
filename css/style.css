@@ -63,6 +63,8 @@ body {
 .header {
   height: 5rem;
   background-color: #dbffd6;
+  position: fixed;
+  width: 100%;
 }
 
 .nav {
@@ -77,8 +79,9 @@ body {
 
 /* card */
 
-
-
+.main {
+  padding-top: 5rem;
+}
 
 .main__cards {
   display: flex;
@@ -247,7 +250,7 @@ body {
 
 .modal {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(0, 0 ,0 , .5);
   position: absolute;
   top: 0;
@@ -255,9 +258,8 @@ body {
 }
 
 .modal__window {
-  position: absolute;
-  top: 0;
-  right: -100%;
+  position: fixed;
+  right: -100vw;
   height: 100vh;
   width: 30rem;
   background-color: rgb(255, 255, 255);
@@ -301,6 +303,20 @@ body {
 .delete {
   width: 1.7rem;
   height: 1.7rem;
+}
+
+
+
+
+/* footer */
+
+
+
+
+.footer {
+  height: 5rem;
+  width: 100%;
+  background-color: rgb(202, 135, 47);
 }
 
 
