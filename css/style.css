@@ -257,10 +257,15 @@ body {
 .modal__window {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -100%;
   height: 100vh;
   width: 30rem;
   background-color: rgb(255, 255, 255);
+  transition: all 1s ease 0s;
+}
+
+.modal__window.active {
+  right: 0;
 }
 
 .modal__window-header h2 {

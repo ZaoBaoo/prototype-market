@@ -89,22 +89,27 @@ window.addEventListener('DOMContentLoaded', async function() {
     }
     updateCart()
 
-    // basket. Слушаем корзину о открываем модальное окно
-    basket.addEventListener('click', (e) => {
+    // basket. Слушаем и рендерим корзину. Открываем модальное окно
+    basket.addEventListener('click', (e) => {      
         modal.style.display = 'block';
         body.classList.add('no-scroll');
-        
+
         const upCart = () => {
             modal.querySelector('.modal__window-block').innerHTML = '';
         }
         upCart();
-        renderCart() 
+        renderCart()
+
+        // без минимальной задержки анимация не проходит
+        setTimeout(() => modal.lastElementChild.classList.add('active'), 0);
     });
 
+    // Закрываем модальное окно на клавишу ESC
     window.addEventListener('keydown', (e) => {
         if (e.code === "Escape" && modal.style.display == "block") { 
             modal.style.display = 'none';
             body.classList.remove('no-scroll');
+            modal.lastElementChild.classList.remove('active')
         }
     });
 
@@ -119,7 +124,15 @@ window.addEventListener('DOMContentLoaded', async function() {
             recoveryCart.querySelector('.card__price-counter').style.display = 'block'
             recoveryCart.querySelector('.card__notification').style.display = 'none'
         }
+
+        if (e.target.classList.contains('modal')) {
+            e.target.style.display = "none";
+            body.classList.remove('no-scroll');
+            modal.lastElementChild.classList.remove('active')
+        }
     });
 });
+
+
 
 
