@@ -130,6 +130,7 @@ body {
   padding: 0.19rem 1rem;
   color: #3c3c3c;
   line-height: 2;
+  width: 7.1rem;
 }
 
 .card__price-counter {
@@ -292,6 +293,7 @@ body {
 .modal__window-text {
   font-size: 0.85rem;
   width: 7rem;
+  padding: 0 0.6rem;
 }
 
 .prev-img {

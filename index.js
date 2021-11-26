@@ -1,6 +1,9 @@
 import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
 import renderCart from './modules/renderCart'
+// import { getMessaging } from "firebase/messaging";
+// const messaging = getMessaging();
+
 
 
 window.addEventListener('DOMContentLoaded', async function() {
@@ -92,14 +95,36 @@ window.addEventListener('DOMContentLoaded', async function() {
     }
     updateCart()
 
+    // Обновляем цену на товар при изменение кол-ва
     function updataPrice(target) {
-        const path = target.parentNode.parentNode.parentNode,
-              sumPrice = path.querySelector('.card__price-text span'),
-              multiplier = path.querySelector('.input-counter'),
-              price = path.getAttribute('data-price');
+        // Обрабатывет + - input со странице
+        if (target.parentNode.parentNode.classList.contains('card__price')) {
+            const path = target.parentNode.parentNode.parentNode,
+                  sumPrice = path.querySelector('.card__price-text span'),
+                  multiplier = path.querySelector('.input-counter').value,
+                  price = path.getAttribute('data-price');
 
-        sumPrice.textContent = price * multiplier.value;
-        // console.log(multiplier);
+            sumPrice.textContent = price * multiplier;
+        }
+        // Обрабатывет + - input с корзины
+        if (target.parentNode.parentNode.classList.contains('modal__window-item')) {
+            const path = target.parentNode.parentNode,
+                  id = path.getAttribute('index'),
+                  newInput = path.querySelector('.input-counter').value;
+                    
+            const updataInputLS = (id, newInput) => {
+                const upObj = JSON.parse(localStorage.getItem(id));
+                upObj.input = newInput;              
+                localStorage.setItem(id, JSON.stringify(upObj))
+            }
+            updataInputLS(id, newInput);
+
+            const sumPrice = path.querySelector('.card__price-text span'),
+                  multiplier = JSON.parse(localStorage.getItem(id)).input,
+                  price = JSON.parse(localStorage.getItem(id)).price;
+            
+            sumPrice.textContent = price * multiplier;
+        }
     }
 
     // basket. Слушаем и рендерим корзину. Открываем модальное окно
@@ -143,9 +168,7 @@ window.addEventListener('DOMContentLoaded', async function() {
             body.classList.remove('no-scroll');
             modal.lastElementChild.classList.remove('active')
         }
-    });
-
-    
+    });   
 });
 
 
