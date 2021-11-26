@@ -18,7 +18,7 @@ function renderCart() {
                     <input class="input-counter" type="number" min="1" max="10" step="1" value="${this.input}">
                     <span class="plus">&#43;</span>
                 </div>
-                <div class="card__price-text"><span>${this.price}</span> тг.</div>
+                <div class="card__price-text"><span>${this.price * this.input}</span> тг.</div>
                 <img class="delete" src="img/delete.svg" alt="">
             `;
             element.setAttribute('index', this.id);

@@ -72,7 +72,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         if (e.target.classList.contains('input-counter')) {
             if (e.target.value < 1) { e.target.value = 1 }
             if (e.target.value > 99) { e.target.value = 99 }
-        }
+        }    
     });
 
     // basket. Обновляем кол-во товаров на иконки корзины
@@ -132,6 +132,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         }
     });
 });
+
 
 
 
