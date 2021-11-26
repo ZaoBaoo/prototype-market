@@ -24,7 +24,7 @@ function renderPage() {
                 </div>
                 <div class="card__text">${this.title}</div>
                 <div class="card__price">
-                    <div class="card__price-text">${this.price} тг.</div>
+                    <div class="card__price-text"><span>${this.price}</span> тг.</div>
                     <div style="display: ${dis === undefined ? 'block' : 'none'};" class="card__price-counter">
                         <span class="minus">&#8722;</span>
                         <input class="input-counter" type="number" min="1" max="10" step="1" value="1">

@@ -45,6 +45,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('plus')) {
             movePlus();
+            updataPrice(e.target);
         }
 
         function movePlus() {
@@ -58,6 +59,7 @@ window.addEventListener('DOMContentLoaded', async function() {
     window.addEventListener('click', (e) => {
         if (e.target.classList.contains('minus')) {
             moveMinus();
+            updataPrice(e.target);
         }
 
         function moveMinus() {
@@ -72,7 +74,8 @@ window.addEventListener('DOMContentLoaded', async function() {
         if (e.target.classList.contains('input-counter')) {
             if (e.target.value < 1) { e.target.value = 1 }
             if (e.target.value > 99) { e.target.value = 99 }
-        }    
+            updataPrice(e.target)
+        }  
     });
 
     // basket. Обновляем кол-во товаров на иконки корзины
@@ -88,6 +91,16 @@ window.addEventListener('DOMContentLoaded', async function() {
         }
     }
     updateCart()
+
+    function updataPrice(target) {
+        const path = target.parentNode.parentNode.parentNode,
+              sumPrice = path.querySelector('.card__price-text span'),
+              multiplier = path.querySelector('.input-counter'),
+              price = path.getAttribute('data-price');
+
+        sumPrice.textContent = price * multiplier.value;
+        // console.log(multiplier);
+    }
 
     // basket. Слушаем и рендерим корзину. Открываем модальное окно
     basket.addEventListener('click', (e) => {      
@@ -131,6 +144,8 @@ window.addEventListener('DOMContentLoaded', async function() {
             modal.lastElementChild.classList.remove('active')
         }
     });
+
+    
 });
 
 
