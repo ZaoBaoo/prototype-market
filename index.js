@@ -1,10 +1,6 @@
 import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
 import renderCart from './modules/renderCart'
-// import { getMessaging } from "firebase/messaging";
-// const messaging = getMessaging();
-
-
 
 window.addEventListener('DOMContentLoaded', async function() {
     await getDB();
@@ -168,7 +164,9 @@ window.addEventListener('DOMContentLoaded', async function() {
             body.classList.remove('no-scroll');
             modal.lastElementChild.classList.remove('active')
         }
-    });   
+    });
+    
+    messaging.Messaage()
 });
 
 

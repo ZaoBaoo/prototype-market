@@ -323,5 +323,55 @@ body {
 
 
 
+/* MEDIA */
+
+@media (max-width: 924px) {
+  .test {
+    width: 50%;
+  }
+
+  .modal__window {
+    width: 70%;
+  }
+
+  .card__price-text {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 621px) {
+  .test {
+    width: 100%;
+  }
+
+  .modal__window {
+    width: 100%;
+  }
+
+  .prev-img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modal__window-block {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .card__price-text {
+    padding: 0.6rem;
+  }
+
+  .modal__window-item .card__price-counter {
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+@media (max-width: 621px) {
+  modal__window-text {
+    font-size: 0.7rem;
+  }
+}
+
+
 
 
