@@ -140,10 +140,10 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     // Закрываем модальное окно на клавишу ESC
     window.addEventListener('keydown', (e) => {
-        if (e.code === "Escape" && modal.style.display == "block") { 
-            modal.style.display = 'none';
+        if (e.code === "Escape" && modal.style.display == "block") {
+            modal.lastElementChild.classList.remove('active');
             body.classList.remove('no-scroll');
-            modal.lastElementChild.classList.remove('active')
+            setTimeout(() => modal.style.display = 'none', 300);
         }
     });
 
@@ -165,8 +165,15 @@ window.addEventListener('DOMContentLoaded', async function() {
             modal.lastElementChild.classList.remove('active')
         }
     });
-    
-    messaging.Messaage()
+
+    // Закрываем модальное окно по клику на exit
+    modal.addEventListener('click', (e) => {
+        if (e.target.classList.contains('exit')) {
+            modal.lastElementChild.classList.remove('active');
+            body.classList.remove('no-scroll'); 
+            setTimeout(() => modal.style.display = 'none', 300);   
+        }
+    });
 });
 
 
