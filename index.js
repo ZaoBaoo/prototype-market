@@ -174,6 +174,11 @@ window.addEventListener('DOMContentLoaded', async function() {
             setTimeout(() => modal.style.display = 'none', 750);   
         }
     });
+
+    // test
+    document.querySelector('#btn').addEventListener('click', (e) => {
+        alert('Заказ оформлен, мы вам перезвоним')
+    });
 });
 
 
