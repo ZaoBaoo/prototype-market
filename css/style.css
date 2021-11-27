@@ -291,8 +291,11 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* justify-content: center; */
   margin-bottom: 1.5rem;
+}
+
+.modal__window-item:last-child {
+  margin-bottom: 0;
 }
 
 .modal__window-text {
@@ -321,14 +324,13 @@ body {
 
 /* BTN */
 .box-3 {
-  margin: 0 auto;
+  margin: 2rem auto 0;
   width: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #9c9c9c;
 }
-
-.box-3 { background-color: #9c9c9c; }
 
 .btn {
   line-height: 50px;

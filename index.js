@@ -143,7 +143,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         if (e.code === "Escape" && modal.style.display == "block") {
             modal.lastElementChild.classList.remove('active');
             body.classList.remove('no-scroll');
-            setTimeout(() => modal.style.display = 'none', 1000);
+            setTimeout(() => modal.style.display = 'none', 700);
         }
     });
 
@@ -171,7 +171,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         if (e.target.classList.contains('exit')) {
             modal.lastElementChild.classList.remove('active');
             body.classList.remove('no-scroll'); 
-            setTimeout(() => modal.style.display = 'none', 1000);   
+            setTimeout(() => modal.style.display = 'none', 700);   
         }
     });
 });
