@@ -41,17 +41,41 @@
             </div>
             <hr>
             <div class="modal__window-block">
-
+                <!--  -->
             </div>
+
             <hr>
+            <div class="order">
+                <div id="error"></div>
+                <form class="form" action="/">
+                    <div class="form__group">
+                        <input class="form__input" id="name" name="name" type="text" placeholder=" ">
+                        <label class="form__label" for="name">Имя</label>                   
+                    </div>
+                    <div class="form__group">
+                        <input class="form__input" id="surname" name="surname" type="text" placeholder=" ">
+                        <label class="form__label" for="surname">Фамилия</label>                   
+                    </div>
+                    <div class="form__group">                  
+                        <input class="form__input" id="email" name="email" type="email" placeholder=" ">
+                        <label class="form__label" for="email">Почта</label>
+                    </div>
+                    <div class="form__group">                  
+                        <input class="form__input" id="tel" name="tel" type="tel" placeholder=" " >
+                        <label class="form__label" for="tel">Телефон</label>
+                    </div>
+                </form>
+            </div>
+            
             <div class="box-3">
-                <div class="btn btn-three" id="btn">
-                    <span>Заказать</span>
-                </div>
+                <a href="order.html">
+                    <div class="btn btn-three" id="btn-order">
+                        <span>Оформить</span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-
 
 <script src="dist/bundle.js"></script>
 </body>

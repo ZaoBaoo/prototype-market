@@ -1,5 +1,5 @@
 function renderCart() {
-    class creatCart {
+    class CreatCart {
         constructor(title, price, id, imgUrl, input) {
             this.title = title;
             this.price = price;
@@ -35,7 +35,7 @@ function renderCart() {
     arrKeysLC.forEach(item => {
         const obj = JSON.parse(localStorage.getItem(item)),
         {title, price, id, imgUrl, input} = obj;
-        new creatCart(title, price, id, imgUrl, input).render();
+        new CreatCart(title, price, id, imgUrl, input).render();
     });
 }
 

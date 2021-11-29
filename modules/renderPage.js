@@ -1,5 +1,5 @@
 function renderPage() {
-    class creatCard {
+    class CreatCard {
         constructor(title, price, id, imgUrl) {
             this.title = title;
             this.price = price;
@@ -43,7 +43,7 @@ function renderPage() {
 
     JSON.parse(localStorage.getItem("items")).forEach(item => {
         const {title, price, id, imgUrl} = item;
-        new creatCard(title, price, id, imgUrl).render();
+        new CreatCard(title, price, id, imgUrl).render();
     })
 }
 
