@@ -1,6 +1,8 @@
 import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
-import renderCart from './modules/renderCart'
+import renderCart from './modules/renderCart';
+
+
 
 window.addEventListener('DOMContentLoaded', async function() {
     await getDB();

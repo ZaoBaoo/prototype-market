@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=development",
-    "start": "webpack --watch"
+    "start": "webpack --watch",
+    "go": "node mailer.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "firebase": "^9.4.0"
+    "dotenv": "^10.0.0",
+    "firebase": "^9.4.0",
+    "nodemailer": "^6.7.2"
   },
   "devDependencies": {
     "webpack": "^5.64.2",
