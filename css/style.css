@@ -273,6 +273,7 @@ body {
 
 .modal__window.active {
   right: 0;
+  overflow-y: scroll;
 }
 
 .modal__window-header {
@@ -497,6 +498,12 @@ body {
 
   .modal__window-item .card__price-counter {
     padding: 0.3rem 0.5rem;
+  }
+
+  /* form */
+
+  .form {
+    padding: 4.5rem;
   }
 }
 
