@@ -1,4 +1,6 @@
 function renderCart() {
+    const mainBlockCart = document.querySelector('.modal__window-block');
+
     class CreatCart {
         constructor(title, price, id, imgUrl, input) {
             this.title = title;
@@ -23,7 +25,7 @@ function renderCart() {
             `;
             element.setAttribute('index', this.id);
             element.classList.add('modal__window-item');
-            document.querySelector('.modal__window-block').append(element);
+            mainBlockCart.append(element);
         }
     }
 
@@ -37,6 +39,15 @@ function renderCart() {
         {title, price, id, imgUrl, input} = obj;
         new CreatCart(title, price, id, imgUrl, input).render();
     });
+
+
+    const total = document.createElement('div');
+    total.classList.add('total');
+    total.innerHTML = `
+        Итого: <span></span> тг.
+    `
+    mainBlockCart.append(total);
+
 }
 
 export default renderCart;
