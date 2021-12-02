@@ -2,8 +2,6 @@ import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
 import renderCart from './modules/renderCart';
 
-
-
 window.addEventListener('DOMContentLoaded', async function() {
     await getDB();
     renderPage();
@@ -13,6 +11,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         modal = document.querySelector('.modal'),
         body = document.querySelector('body'),
         btnOrder = document.querySelector('#btn-order');
+        
 
     // Слушаем кнопку добавить
     blockCard.addEventListener('click', (e) => {
@@ -101,7 +100,8 @@ window.addEventListener('DOMContentLoaded', async function() {
         const totalSum = arrSum.reduce((accumulator, currentValue) => {
             return accumulator + (+currentValue.textContent);
         }, 0)
-        totalBlock.textContent = totalSum;  
+        totalBlock.textContent = totalSum;
+        return totalBlock.textContent;
     }
 
     // Обновляем цену на товар при изменение кол-ва
@@ -195,10 +195,50 @@ window.addEventListener('DOMContentLoaded', async function() {
 
     // Слушаем кнопку заказать
     btnOrder.addEventListener('click', (e) => {
-        const contactsName = document.querySelector('#name'),
-              contactsSurname = document.querySelector('#surname'),
-              contactsEmail = document.querySelector('#email'),
-              contactsTel = document.querySelector('#tel');      
+        const contactsName = document.querySelector('#name').value,
+              contactsSurname = document.querySelector('#surname').value,
+              contactsEmail = document.querySelector('#email').value,
+              contactsTel = document.querySelector('#tel').value,
+              url = 'http://localhost:3001/order';
+        
+        const getPurchase = () => {
+            const keysLC = Object.keys(localStorage);
+            const arrKeysLC = keysLC.filter(item => {
+                if (item != 'items') { return item }
+            });
+
+            return arrKeysLC.map(item => {
+                const {id, title, price, input} = JSON.parse(localStorage.getItem(item));
+                return {
+                    'id': id,
+                    'title': title,
+                    'price': price,
+                    'quantity': input
+                }
+            });   
+        }
+
+        const dataObj = {
+            'contacts': {
+                'name': contactsName,
+                'surname': contactsSurname,
+                'email': contactsEmail,
+                'tel': contactsTel,
+            },
+            'amount': calcTotal(),
+            'purchase': getPurchase()
+        };
+
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(dataObj),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(data => data.json())
+        .then(data => console.log(data))
+           
     });
 });
 
