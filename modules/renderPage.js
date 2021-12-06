@@ -30,7 +30,7 @@ function renderPage() {
                         <input class="input-counter" type="number" min="1" max="10" step="1" value="1">
                         <span class="plus">&#43;</span>
                     </div>
-                    <div style="display: ${dis === undefined ? 'none' : 'block'};" class="card__notification">Добавлено</div>
+                    <div style="display: ${dis === undefined ? 'none' : 'block'};" class="card__notification">Добавлено <span class="card__check-mark">&#10004</span></div>
                 </div>
                 <div class="card__btn">
                     <div class="card__btn-add">Добавить товар</div>
