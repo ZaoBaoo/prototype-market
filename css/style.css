@@ -241,6 +241,7 @@ body {
   color: #606060;
   font-weight: 600;
   padding: 0.6rem 1.5rem;
+  line-height: 1.4;
 }
 
 .card__btn {
@@ -281,7 +282,7 @@ body {
 
 .card__check-mark {
   position: absolute;
-  top: 3px;
+  top: 6px;
   right: 5px;
   color: #2b8600;
   font-size: 1.2rem;
