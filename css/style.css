@@ -282,7 +282,7 @@ body {
 
 .card__check-mark {
   position: absolute;
-  top: 6px;
+  top: 4px;
   right: 5px;
   color: #2b8600;
   font-size: 1.2rem;
