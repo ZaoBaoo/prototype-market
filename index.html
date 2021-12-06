@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <title>Market</title>
 </head>
-<body>
-    
+<body>   
     <!-- Header -->
     <div class="wrapper">
         <header class="header">
@@ -47,66 +46,81 @@
             </div>
         </header>
 
-    </div>
+        <!-- Main -->
+        <main class="main">
+            <div class="container">
+                <div class="main__cards">
 
-    <!-- Main -->
-    <main class="main">
-        <div class="container">
-            <div class="main__cards">
-
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <!-- <footer class="footer"></footer> -->
-
-    <!-- Modal -->
-    <div class="modal" style="display: none;">
-        <div class="modal__window">
-            <img class="spinner" src="img/spinner.svg" alt="" style="display: none;">
-            <div class="modal__wrapper">
-
-                <div class="modal__window-header">
-                    <h2>Оформить заказ</h2>
-                    <img class="exit" src="img/exit.svg" alt="">
-                </div>
-                <hr>
-                <div class="modal__window-block">
-                    <!--  -->
-                </div>
-    
-                <hr>
-                <div class="alert" id="alert"></div>
-                <div class="order">
-                    
-                    <form class="form" action="/">
-                        <div class="form__group">
-                            <input class="form__input _req _name" id="name" name="name" type="text" placeholder=" ">
-                            <label class="form__label" for="name">Имя</label>                   
-                        </div>
-                        <div class="form__group">
-                            <input class="form__input _req _surname" id="surname" name="surname" type="text" placeholder=" ">
-                            <label class="form__label" for="surname">Фамилия</label>                   
-                        </div>
-                        <div class="form__group">                  
-                            <input class="form__input _req _email" id="email" name="email" type="email" placeholder=" ">
-                            <label class="form__label" for="email">Почта</label>
-                        </div>
-                        <div class="form__group">                  
-                            <input class="form__input _req _tel" id="tel" name="tel" type="tel" placeholder=" " >
-                            <label class="form__label" for="tel">Телефон</label>
-                        </div>
-                    </form>
-                </div>
-                
-                <div class="box-3">
-                    <div class="btn btn-three" id="btn-order">
-                        <span>Оформить</span>
+        <footer class="footer">
+            <div class="container">
+                <div class="footer__block">
+                    <div class="footer__contacts">
+                        <div class="footer__list">Казахстан г. Алматы</div>
+                        <div class="footer__list">График работы с 10:00-19:00 (Пн-Сб)</div>
+                        <div class="footer__list"><a target="_blank" href="mailto:elena.karpova.mailing@gmail.com">elena.karpova.mailing@gmail.com</a></div>
+                        <div class="footer__list"><a target="_blank" href="tel:87771434505">+7 (777) 143-45-05</a></div>
                     </div>
+                    <div class="footer__copy">
+                        <div class="copy-padding">© Copyright 2021</div>
+                        <p class="copy-padding">WEBSITE BY <a href="#"><span class="text-white">DANIIL YURKIN</span></a></p>
+                    </div> 
                 </div>
-                
+            </div>
+        </footer>
+
+        <!-- Modal -->
+        <div class="modal" style="display: none;">
+            <div class="modal__window">
+                <img class="spinner" src="img/spinner.svg" alt="" style="display: none;">
+                <div class="modal__wrapper">
+
+                    <div class="modal__window-header">
+                        <h2>Оформить заказ</h2>
+                        <img class="exit" src="img/exit.svg" alt="">
+                    </div>
+                    <hr>
+                    <div class="modal__window-block">
+                        <!--  -->
+                    </div>
+
+                    <hr>
+                    <div class="alert" id="alert"></div>
+                    <div class="order">
+                        
+                        <form class="form" action="/">
+                            <div class="form__group">
+                                <input class="form__input _req _name" id="name" name="name" type="text" placeholder=" ">
+                                <label class="form__label" for="name">Имя</label>                   
+                            </div>
+                            <div class="form__group">
+                                <input class="form__input _req _surname" id="surname" name="surname" type="text" placeholder=" ">
+                                <label class="form__label" for="surname">Фамилия</label>                   
+                            </div>
+                            <div class="form__group">                  
+                                <input class="form__input _req _email" id="email" name="email" type="email" placeholder=" ">
+                                <label class="form__label" for="email">Почта</label>
+                            </div>
+                            <div class="form__group">                  
+                                <input class="form__input _req _tel" id="tel" name="tel" type="tel" placeholder=" " >
+                                <label class="form__label" for="tel">Телефон</label>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="box-3">
+                        <div class="btn btn-three" id="btn-order">
+                            <span>Оформить</span>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
+
     </div>
 
 <script src="dist/bundle.js"></script>
