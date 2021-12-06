@@ -1,11 +1,13 @@
 import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
 import renderCart from './modules/renderCart';
+import burger from './modules/burger'
 import Inputmask from "inputmask";
 
 window.addEventListener('DOMContentLoaded', async function() {
     await getDB();
     renderPage();
+    burger();
 
     const blockCard = document.querySelector('.main__cards'),
         basket = document.querySelector('.basket'),
