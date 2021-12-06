@@ -13,7 +13,7 @@
     <div class="header">
         <div class="container">
             <div class="nav">
-                <div class="basket">
+                <div class="basket" style="display: none;">
                     <img class="cart" src="img/cart.svg" alt="">
                     <div class="basket__counter"></div>
                 </div>
@@ -35,42 +35,48 @@
     <!-- Modal -->
     <div class="modal" style="display: none;">
         <div class="modal__window">
-            <div class="modal__window-header">
-                <h2>Оформить заказ</h2>
-                <img class="exit" src="img/exit.svg" alt="">
-            </div>
-            <hr>
-            <div class="modal__window-block">
-                <!--  -->
-            </div>
+            <img class="spinner" src="img/spinner.svg" alt="" style="display: none;">
+            <div class="modal__wrapper">
 
-            <hr>
-            <div class="order">
-                <div id="error"></div>
-                <form class="form" action="/">
-                    <div class="form__group">
-                        <input class="form__input" id="name" name="name" type="text" placeholder=" ">
-                        <label class="form__label" for="name">Имя</label>                   
-                    </div>
-                    <div class="form__group">
-                        <input class="form__input" id="surname" name="surname" type="text" placeholder=" ">
-                        <label class="form__label" for="surname">Фамилия</label>                   
-                    </div>
-                    <div class="form__group">                  
-                        <input class="form__input" id="email" name="email" type="email" placeholder=" ">
-                        <label class="form__label" for="email">Почта</label>
-                    </div>
-                    <div class="form__group">                  
-                        <input class="form__input" id="tel" name="tel" type="tel" placeholder=" " >
-                        <label class="form__label" for="tel">Телефон</label>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="box-3">
+                <div class="modal__window-header">
+                    <h2>Оформить заказ</h2>
+                    <img class="exit" src="img/exit.svg" alt="">
+                </div>
+                <hr>
+                <div class="modal__window-block">
+                    <!--  -->
+                </div>
+    
+                <hr>
+                <div class="alert" id="alert"></div>
+                <div class="order">
+                    
+                    <form class="form" action="/">
+                        <div class="form__group">
+                            <input class="form__input _req _name" id="name" name="name" type="text" placeholder=" ">
+                            <label class="form__label" for="name">Имя</label>                   
+                        </div>
+                        <div class="form__group">
+                            <input class="form__input _req _surname" id="surname" name="surname" type="text" placeholder=" ">
+                            <label class="form__label" for="surname">Фамилия</label>                   
+                        </div>
+                        <div class="form__group">                  
+                            <input class="form__input _req _email" id="email" name="email" type="email" placeholder=" ">
+                            <label class="form__label" for="email">Почта</label>
+                        </div>
+                        <div class="form__group">                  
+                            <input class="form__input _req _tel" id="tel" name="tel" type="tel" placeholder=" " >
+                            <label class="form__label" for="tel">Телефон</label>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="box-3">
                     <div class="btn btn-three" id="btn-order">
                         <span>Оформить</span>
                     </div>
+                </div>
+                
             </div>
         </div>
     </div>

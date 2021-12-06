@@ -1,6 +1,7 @@
 import getDB from './modules/getDB';
 import renderPage from './modules/renderPage';
 import renderCart from './modules/renderCart';
+import Inputmask from "inputmask";
 
 window.addEventListener('DOMContentLoaded', async function() {
     await getDB();
@@ -10,7 +11,9 @@ window.addEventListener('DOMContentLoaded', async function() {
         basket = document.querySelector('.basket'),
         modal = document.querySelector('.modal'),
         body = document.querySelector('body'),
-        btnOrder = document.querySelector('#btn-order');
+        btnOrder = document.querySelector('#btn-order'),
+        alert = document.querySelector('#alert'),
+        basketBlock = modal.querySelector('.modal__window-block');
         
 
     // Слушаем кнопку добавить
@@ -39,6 +42,7 @@ window.addEventListener('DOMContentLoaded', async function() {
             }
             switchCounter();
             updateCart();
+            hidenCart();
         }
     });
 
@@ -78,6 +82,16 @@ window.addEventListener('DOMContentLoaded', async function() {
             updataPrice(e.target)
         }  
     });
+
+    // Прячем или показываем корзину в зависимости от кол-во товаров в ней
+    const hidenCart = () => {
+        if (localStorage.length > 1) {
+            basket.style.display = 'flex';
+        } else {
+            basket.style.display = 'none';
+        }
+    }
+    hidenCart();
 
     // basket. Обновляем кол-во товаров на иконки корзины
     const updateCart = () => {
@@ -138,17 +152,22 @@ window.addEventListener('DOMContentLoaded', async function() {
         calcTotal();
     }
 
+    // Удаляем все из корзины
+    const delCart = () => {
+        basketBlock.innerHTML = '';
+    }   
+
     // basket. Слушаем и рендерим корзину. Открываем модальное окно
     basket.addEventListener('click', (e) => {      
         modal.style.display = 'block';
         body.classList.add('no-scroll');
 
-        const upCart = () => {
-            modal.querySelector('.modal__window-block').innerHTML = '';
-        }
-        upCart();
+        
+        delCart();
         renderCart();
         calcTotal();
+        alert.textContent = '';
+        // console.log(basketBlock.childNodes.length);
 
         // без минимальной задержки анимация не проходит
         setTimeout(() => modal.lastElementChild.classList.add('active'), 0);
@@ -161,7 +180,15 @@ window.addEventListener('DOMContentLoaded', async function() {
             body.classList.remove('no-scroll');
             setTimeout(() => modal.style.display = 'none', 750);
         }
+        hidenCart();
     });
+
+    // Обновляем позиции на странице после удаления из корзины
+    const updateItemFromPage = (index) => {
+            const recoveryCart = document.querySelector(`[data-index=${index}]`);
+            recoveryCart.querySelector('.card__price-counter').style.display = 'block'
+            recoveryCart.querySelector('.card__notification').style.display = 'none'
+    }
 
     // Удаление позиции из корзины
     modal.addEventListener('click', (e) => {
@@ -169,10 +196,11 @@ window.addEventListener('DOMContentLoaded', async function() {
             e.target.parentNode.remove()
             const index = e.target.parentNode.getAttribute('index')
             localStorage.removeItem(index);
-            updateCart()
-            const recoveryCart = document.querySelector(`[data-index=${index}]`);
-            recoveryCart.querySelector('.card__price-counter').style.display = 'block'
-            recoveryCart.querySelector('.card__notification').style.display = 'none'
+            updateCart();
+            updateItemFromPage(index);
+            // const recoveryCart = document.querySelector(`[data-index=${index}]`);
+            // recoveryCart.querySelector('.card__price-counter').style.display = 'block'
+            // recoveryCart.querySelector('.card__notification').style.display = 'none'
         }
 
         if (e.target.classList.contains('modal')) {
@@ -182,6 +210,7 @@ window.addEventListener('DOMContentLoaded', async function() {
         }
         
         calcTotal();
+        hidenCart();
     });
 
     // Закрываем модальное окно по клику на exit
@@ -191,15 +220,16 @@ window.addEventListener('DOMContentLoaded', async function() {
             body.classList.remove('no-scroll'); 
             setTimeout(() => modal.style.display = 'none', 750);   
         }
+        hidenCart();
     });
 
-    // Слушаем кнопку заказать
-    btnOrder.addEventListener('click', (e) => {
+    // Получаем данные для отправки на почту
+    const getDataToSendToMail = () => {
         const contactsName = document.querySelector('#name').value,
               contactsSurname = document.querySelector('#surname').value,
               contactsEmail = document.querySelector('#email').value,
-              contactsTel = document.querySelector('#tel').value,
-              url = 'http://localhost:3001/order';
+              contactsTel = document.querySelector('#tel').value;
+              
         
         const getPurchase = () => {
             const keysLC = Object.keys(localStorage);
@@ -229,17 +259,127 @@ window.addEventListener('DOMContentLoaded', async function() {
             'purchase': getPurchase()
         };
 
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(dataObj),
-            headers: {
-                'Content-Type': 'application/json'
+        return dataObj;
+    }
+    
+    // Ключи от локального хранилища
+    const getKeysLC = () => {
+        const keysLC = Object.keys(localStorage);
+        const arrKeysLC = keysLC.filter(item => {
+            if (item != 'items') { return item }
+        });
+        return arrKeysLC;
+    }
+
+    // Валидация инпутов
+    const validationСheck = () => {
+        let error = 0;
+        let formReq = document.querySelectorAll('._req');
+
+        formReq.forEach(input => {
+            if (input.classList.contains('_name')) {
+                const regex = new RegExp(/^[а-яА-Я]{3,16}$/);
+                if (!regex.test(input.value.trim())) { 
+                    error++;
+                    input.classList.add('err');
+                }
+                
             }
-        })
-        .then(data => data.json())
-        .then(data => console.log(data))
-           
+
+            if (input.classList.contains('_surname')) {
+                const regex = new RegExp(/^[а-яА-Я]{3,16}$/);
+                if (!regex.test(input.value.trim())) { 
+                    error++; 
+                    input.classList.add('err');
+                }
+                
+            }
+
+            if (input.classList.contains('_email')) {
+                const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+                if (!regex.test(input.value.trim())) { 
+                    error++; 
+                    input.classList.add('err');
+                }
+                
+            }
+
+            if (input.classList.contains('_tel')) {
+                const regex = new RegExp(/[\d]{3,3}[\s]{1,1}[\d]{2,2}[\s]{1,1}[\d]{2,2}/);
+                if (!regex.test(input.value.trim())) { 
+                    error++; 
+                    input.classList.add('err');
+                }
+              
+            }
+        });
+        
+        if (error == 0) {
+            console.log("true");
+            return true;
+            
+        } else {
+            console.log("false");
+            return false;
+            
+        }
+    }
+
+    // Слушаем кнопку заказать
+    btnOrder.addEventListener('click', (e) => {
+        if (validationСheck()) {
+            console.log("Отправлено");
+            const switchBlock = modal.lastElementChild,
+                  inputForm = document.querySelectorAll('.form__input');
+            switchBlock.lastElementChild.style.display = 'none';
+            switchBlock.firstElementChild.style.display = 'block';
+
+            const dataObj = getDataToSendToMail(),
+                    url = 'http://localhost:3001/order';
+
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(dataObj),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(data => {
+                if(data.status == 200) {
+                    switchBlock.lastElementChild.style.display = 'block';
+                    switchBlock.firstElementChild.style.display = 'none';
+
+                    inputForm.forEach(input => input.classList.remove('err'));
+                    document.forms[0].reset();
+                    getKeysLC().forEach(item => {
+                        localStorage.removeItem(item);
+                        updateItemFromPage(item);
+                    });
+                    updateCart();
+                    basketBlock.querySelectorAll('*').forEach(item => {
+                        if (!item.classList.contains('total')) { item.remove() }
+                    })
+                    alert.textContent = 'Спасибо, заказ оформлен. Скоро мы с вами свяжемся!'
+                    
+                }
+            })
+            .catch(() => {
+                switchBlock.lastElementChild.style.display = 'block';
+                switchBlock.firstElementChild.style.display = 'none';
+            })
+            .finally(() => {
+                console.log('finally');
+            }); 
+            
+        }
     });
+
+    // Устанавливаем маску для инпута tel
+    (function() {
+        const tel = document.querySelector('#tel');
+    const im = new Inputmask("+7 (999) 999 99 99", { showMaskOnHover: false });
+    im.mask(tel);
+    })()  
 });
 
 

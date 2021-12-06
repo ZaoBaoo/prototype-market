@@ -10,8 +10,8 @@ const PORT = 3001;
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.post('/order', (req, res) => {
-    if(!req.body.contacts.name || !req.body.contacts.surname || !req.body.contacts.email || !req.body.contacts.tel) { return res.sendStatus(400) }    
-    res.send('Заявка создана!')
+    // if(!req.body.contacts.name || !req.body.contacts.surname || !req.body.contacts.email || !req.body.contacts.tel) { return res.sendStatus(400) }    
+    // res.send('Заявка создана!')
     const pars = (obj) => {
         // Патерн
         let template = {"<>":"tr","html":[
@@ -49,12 +49,12 @@ app.post('/order', (req, res) => {
     }
     const mailOptions = {
         from: 'elena.karpova.mailing@gmail.com',
-        to: 'lnkrpvaa@gmail.com',
+        to: 'elena.karpova.mailing@gmail.com',
         subject: 'Супер новое письмо',
         html: pars(req.body)
     }
     mailer(mailOptions)
-    
+    res.sendStatus(200)
 });
 app.use(express.static(__dirname));
 app.get('/order', (req, res) => {

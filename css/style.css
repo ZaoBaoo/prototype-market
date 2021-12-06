@@ -58,6 +58,15 @@ body {
   overflow: hidden;
 }
 
+.spinner {
+  height: 100vh;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* .hide {
+  display: none;
+} */
 
 
 /* header */
@@ -335,6 +344,18 @@ body {
   text-align: end;
 }
 
+.alert {
+  color: #2b8600;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.err {
+  box-shadow: 0 0 5px red;
+}
+
+
+
 
 
 /* BTN */
@@ -419,7 +440,8 @@ body {
 }
 
 .form__input {
-  font-family: sans-serif;
+  color: #303030;
+  font-family: 'Roboto', sans-serif;
   letter-spacing: 1px;
   font-size: 1rem;
 }
