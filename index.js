@@ -339,12 +339,14 @@ window.addEventListener('DOMContentLoaded', async function() {
             const dataObj = getDataToSendToMail(),
                     url = 'http://localhost:3001/order';
 
+            console.log(dataObj);
             fetch(url, {
                 method: 'POST',
                 body: JSON.stringify(dataObj),
                 headers: {
                     'Content-Type': 'application/json'
                 }
+                
             })
             .then(data => {
                 if(data.status == 200) {
